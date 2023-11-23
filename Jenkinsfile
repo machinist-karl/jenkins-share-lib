@@ -1,4 +1,4 @@
-@Library("jenkinslib") _
+@Library('jenkinslib') _
 def tools = new org.devops.tools()
 String workspace = "/var/lib/jenkins/workspace/my_temp"
 
@@ -24,6 +24,8 @@ pipeline {
                 timeout(time: 5, unit: "MINUTES"){
 					script{
 						println("获取代码")
+						tools.PrintMsgWithColor("Pull code from git warehouse successful", "blue")
+						// sh "printenv"
 					}
 				}
             }
@@ -34,6 +36,7 @@ pipeline {
                 timeout(time: 20, unit: "MINUTES"){
 					script{
 						println("应用打包")
+						tools.PrintMsgWithColor("Pack the code successful", "red")
 					}
 				}
             }
@@ -44,7 +47,8 @@ pipeline {
                 timeout(time: 30, unit: "MINUTES"){
 					script{
 						println("代码扫描")
-						tools.printMsg("代码扫描成功")
+						//tools.printMsg("代码扫描成功")
+						tools.PrintMsgWithColor("Scan code successful", "green")
 					}
 				}
             }
